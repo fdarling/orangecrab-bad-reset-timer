@@ -1,0 +1,18 @@
+# VCD = 
+# TOP_MODULE = 
+# SIM_FILE = 
+# TESTBENCH_SOURCES = 
+# VERILOG_SOURCES = 
+
+all: $(VCD)
+
+$(SIM_FILE): $(TESTBENCH_SOURCES) $(VERILOG_SOURCES)
+	iverilog -o $(SIM_FILE) -s$(TOP_MODULE) $(TESTBENCH_SOURCES) $(VERILOG_SOURCES)
+
+$(VCD): $(SIM_FILE)
+	vvp $(SIM_FILE)
+
+clean:
+	rm -f $(SIM_FILE) $(VCD)
+
+.PHONY: all clean
