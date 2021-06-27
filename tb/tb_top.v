@@ -7,7 +7,8 @@ module tb_top();
 
     top top_inst
     (
-        .clk48(clk)
+        .clk48(clk),
+        .usr_btn(1'b1)
     );
 
     initial begin
