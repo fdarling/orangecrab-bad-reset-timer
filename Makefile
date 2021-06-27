@@ -3,7 +3,8 @@ PROJ=bad_reset_timer
 TOP_MODULE = top
 VERILOG_SOURCES = \
 	src/top.v \
-	src/reset_timer.v
+	src/reset_timer.v \
+	src/reset_timer_hardcoded.v
 
 all: $(PROJ).dfu
 

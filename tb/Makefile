@@ -4,6 +4,7 @@ SIM_FILE = tb_top
 TESTBENCH_SOURCES = tb_top.v
 VERILOG_SOURCES = \
 	../src/top.v \
-	../src/reset_timer.v
+	../src/reset_timer.v \
+	../src/reset_timer_hardcoded.v
 
 include common.mak

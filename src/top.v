@@ -27,10 +27,10 @@ module top
     wire       usb_uart_reset;
     wire [7:0] reset_counter;
     wire       counter_non_zero;
+    wire reset2;
+    wire [3:0] counter2;
 
     // state
-    reg reset2 = 1'b1;
-    reg [3:0] counter2 = 11;
 
     // sub-modules
     reset_timer
@@ -45,6 +45,12 @@ module top
         .counter_out(reset_counter),
         .counter_non_zero(counter_non_zero)
     );
+    reset_timer_hardcoded usb_uart_reset_inst2
+    (
+        .clk(clk48),
+        .reset_out(reset2),
+        .counter_out(counter2)
+    );
 
     // initial state
     initial begin
@@ -54,12 +60,6 @@ module top
     // state change
     always @(posedge clk48) begin
         rst_n <= usr_btn;
-        if (counter2 != 0) begin
-            counter2 <= counter2 - 1;
-        end
-        else begin
-            reset2 <= 1'b0;
-        end
     end
 
     // output logic
