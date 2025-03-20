@@ -12,7 +12,8 @@ module reset_timer
     output wire       counter_non_zero
 );
     // parameters
-    localparam COUNTER_MAX = TIME_NS * CLOCK_HZ / (1000*1000*1000) - 1;
+    localparam COUNTER_MAX = 64'd1 * TIME_NS * CLOCK_HZ / (1000*1000*1000) - 1; // NOTE: 64'd1 needed for yosys to prevent integer overflow
+    // localparam COUNTER_MAX = TIME_NS * CLOCK_HZ / (1000*1000*1000) - 1; // NOTE: this should work, but doesn't due to the integer promotion issue (bug?)...
     localparam COUNTER_BITS = $clog2(COUNTER_MAX);
 
     // state
